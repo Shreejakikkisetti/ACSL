@@ -1,0 +1,63 @@
+package Homeworks;
+import java.util.*;
+public class ACSLProblem2 {
+public static void main (String[] args){
+	Scanner in = new Scanner (System.in);
+	String [] arr = new String[5];
+	int [] nums = new int [5];
+	boolean [] check = new boolean [5];
+	for (int i = 0; i<arr.length; i++){
+		System.out.println("Enter String"+(i+1));
+		String input = in.nextLine();
+		arr[i] = input.replaceAll("\\s","");
+		
+	}
+	for (int i = 0; i<arr.length; i++){
+		for (int j = 0; i<arr[i].length(); j++){
+			if (arr[i].charAt(j) == ')'){
+				nums[i] = arr[i].indexOf(')');
+				check[i] = false; 
+				break;
+			}
+			if(arr[i].charAt(j) == '('){
+				nums[i] = arr[i].indexOf('('); 
+				check[i] = true;
+				break;
+			}
+		}
+	}
+	for (int i = 0; i<arr.length; i++){
+		for (int j = 0; j<arr[i].length(); j++){
+			
+		}
+	}
+	
+	for (int i = 0; i<arr.length; i++){
+		System.out.print("Output "+(i+1)+". ");
+		if (check[i] == true){
+			int count = 0;
+			for (int j = nums[i]; j<arr[i].length()+1; j++){
+				if (j == nums[i]){
+					System.out.print(j+5+" ");
+					count = nums[i]+5;
+				}
+				else{
+					System.out.print(count+2+" ");
+					count+=2;
+				}
+				if (count>=arr[i].length()+1){
+					count = 0;
+					break;
+				}
+			}
+		}
+		else{
+			for (int j = 1; j<nums[i] ; j+=2){
+				System.out.print(j+" ");
+			}
+			
+	}
+		System.out.println();
+	}
+}
+}
