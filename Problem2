@@ -1,0 +1,166 @@
+package training.arrays;
+
+import java.util.Scanner;
+
+public class ACSL {
+	public static void main(String[] args) {
+
+		int[][] nums = new int[5][11];
+
+		String input = null;
+
+		for (int i = 0; i < 5; i++){
+
+ 				Scanner in = new Scanner(System.in);
+
+				System.out.println("Enter the input ");
+
+				 input = in.nextLine();
+
+				 String[] tempInput = input.split(",");
+
+				 for(int j = 0; j < tempInput.length ; j++){
+
+					 nums[i][j] = Integer.parseInt(tempInput[j].trim());
+
+				 }
+
+			
+
+		}
+
+		for(int count = 0 ; count < 5 ; count++ ){
+
+ 			int[] dealer = new int[3];
+
+			int[] player = new int[7];
+
+			
+
+			int total = nums[count][0];
+
+ 			int playerCount = 0;
+
+			int dealerCount = 0;
+
+			for (int j = 1; j <= 10; j++) {
+
+				if (j <= 3 || j % 2 == 0) {
+
+					player[playerCount] = nums[count][j];
+
+					playerCount += 1;
+
+					
+
+				}else{
+
+					dealer[dealerCount] = nums[count][j];
+
+ 					dealerCount += 1;
+
+				}
+
+			}
+
+			int counter = 0;
+
+			int index = 0;
+
+			String winningPlayer = "";
+
+			boolean error = false;
+
+ 			while(total <= 99){
+
+				counter+=1;
+
+				int test = 0;
+
+				if(counter % 2 != 0){
+
+					if(index >= player.length){
+
+						error = true;
+
+					}else{
+
+ 						test = player[index];
+
+						winningPlayer = "dealer";
+
+					}
+
+					
+
+				}else{
+
+					if(index >= dealer.length){
+
+						error = true;
+
+ 					}else{
+
+						test = dealer[index];
+
+						winningPlayer = "player";
+
+						index += 1;
+
+					}
+
+				}
+
+				if(!error){
+
+ 					if (test == 9) {
+
+						total = total + 0;
+
+					} else if (test == 4) {
+
+						total = total - 10;
+
+					} else if (test == 0) {
+
+						if (total + 11 <= 99) {
+
+							total = total + 11;
+
+						} else {
+
+							total = total + 1;
+
+						}
+
+					} else {
+
+						total = total + test;
+
+					}
+
+				}else{
+
+					System.out.println(total+", No Winner...");
+
+					total = 100;
+
+					continue;
+
+				}
+
+			}
+
+			if(!error){
+
+				System.out.println(total+","+winningPlayer);
+
+			}
+
+			
+
+		}
+
+	}
+
+}
